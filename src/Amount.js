@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
-import withStyles from 'react-jss';
+import withStyles, {ThemeProvider} from 'react-jss';
 
-const styles = {
+const styles =(theme) => ({
   plusButton: {
-    backgroundColor: 'green',
-    color: '#fff'
+    backgroundColor: theme.button.primary.backgroundColor,
+    color: theme.button.primary.textColor,
   },
   minusButton: {
-    backgroundColor: 'red',
-    color: '#fff'
+    backgroundColor: theme.button.danger.backgroundColor,
+      color: theme.button.danger.textColor
   }
-};
+});
 
 const Amount = ({classes, currencyList}) => {
   const [amount, setAmount] = useState(0);
