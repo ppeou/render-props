@@ -1,6 +1,18 @@
 import React, {useState} from 'react';
+import withStyles from 'react-jss';
 
-const Amount = (currencyComponents) => {
+const styles = {
+  plusButton: {
+    backgroundColor: 'green',
+    color: '#fff'
+  },
+  minusButton: {
+    backgroundColor: 'red',
+    color: '#fff'
+  }
+};
+
+const Amount = ({classes, currencyList}) => {
   const [amount, setAmount] = useState(0);
 
   const updateAmount = (e) => {
@@ -11,15 +23,17 @@ const Amount = (currencyComponents) => {
   return (
     <div>
       <span>US Dollar: {amount} </span>
-      <button type="button" value={1} onClick={updateAmount}>+</button>
+      <button className={classes.plusButton} type="button"
+              value={1} onClick={updateAmount}>+</button>
       <span> | </span>
-      <button type="button" value={-1} onClick={updateAmount}>-</button>
+      <button className={classes.minusButton} type="button"
+              value={-1} onClick={updateAmount}>-</button>
       <hr />
-      {currencyComponents.map(CurrencyComponent => (
-        <CurrencyComponent amount={amount} />
+      {currencyList.map(CurrencyComponent => (
+        <CurrencyComponent amount={amount}/>
       ))}
     </div>
   );
 };
 
-export default Amount;
+export default withStyles(styles)(Amount);
