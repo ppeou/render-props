@@ -1,9 +1,6 @@
 import React, {useState} from 'react';
 
-const Euro = ({ amount }) => <p>Euro: {(amount * 0.86).toFixed(4)}</p>;
-const Pound = ({ amount }) => <p>Pound: {(amount * 0.76).toFixed(4)}</p>;
-
-const Amount = () => {
+const Amount = (currencyComponents) => {
   const [amount, setAmount] = useState(0);
 
   const updateAmount = (e) => {
@@ -18,12 +15,11 @@ const Amount = () => {
       <span> | </span>
       <button type="button" value={-1} onClick={updateAmount}>-</button>
       <hr />
-      <Euro amount={amount} />
-      <Pound amount={amount} />
+      {currencyComponents.map(CurrencyComponent => (
+        <CurrencyComponent amount={amount} />
+      ))}
     </div>
   );
 };
-
-
 
 export default Amount;
